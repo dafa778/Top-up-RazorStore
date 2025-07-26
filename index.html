@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Up Free Fire</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://files.catbox.moe/gfd8xu.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      margin: 50px auto;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #00e676;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sound Otomatis -->
+  <audio autoplay>
+    <source src="sound.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="container">
+    <h1>Top Up Free Fire</h1>
+    <form id="formOrder">
+      <label>User ID:</label>
+      <input type="text" id="userID" required>
+
+      <label>Nama:</label>
+      <input type="text" id="nama" required>
+
+      <label>Jumlah Diamond:</label>
+      <select id="diamond">
+        <option value="70">70 DM</option>
+        <option value="140">140 DM</option>
+        <option value="355">355 DM</option>
+        <option value="720">720 DM</option>
+      </select>
+
+      <button type="submit">Kirim ke WhatsApp</button>
+    </form>
+
+    <h2>List Pesanan</h2>
+    <ul id="listPesanan"></ul>
+  </div>
+
+  <script>
+    const form = document.getElementById('formOrder');
+    const listPesanan = document.getElementById('listPesanan');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const userID = document.getElementById('userID').value;
+      const nama = document.getElementById('nama').value;
+      const diamond = document.getElementById('diamond').value;
+
+      const pesan = `Halo, saya ingin top up Free Fire\nUser ID: ${userID}\nNama: ${nama}\nJumlah Diamond: ${diamond}`;
+      const nomorWA = '6283838286725'; // Ganti ke nomor WA kamu
+
+      const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+      window.open(linkWA, '_blank');
+
+      const item = document.createElement('li');
+      item.textContent = `ID: ${userID} | Nama: ${nama} | ${diamond} DM`;
+      listPesanan.appendChild(item);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
